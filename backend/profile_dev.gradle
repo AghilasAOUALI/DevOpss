@@ -1,0 +1,47 @@
+apply plugin: 'org.springframework.boot'
+apply plugin: 'com.moowork.node'
+
+ext {
+    logbackLoglevel = "DEBUG"
+    logbackLogPath = "app/apache-tomcat-8.0.35/logs/logFile.%d{yyyy-MM-dd}.log"
+}
+
+dependencies {
+    compile "org.springframework.boot:spring-boot-devtools"
+}
+
+def profiles = 'dev'
+
+bootRun {
+    args = []
+}
+
+war {
+//    dependsOn ':frontend:ngBuild'
+    manifest {
+        attributes 'Main-Class': 'com.campusfrance.op.OPApplication'
+    }
+//    into('') {
+//        from "${project(':frontend').projectDir}/dist"
+//    }
+}
+
+processResources {
+    filesMatching('**/logback-spring.xml') {
+        filter {
+            it.replace('#logback.loglevel#', logbackLoglevel)
+        }
+        filter {
+            it.replace('#logback.logpath#', logbackLogPath)
+        }
+    }
+    filesMatching('**/application.yml') {
+        filter {
+            it.replace('#spring.profiles.active#', profiles)
+        }
+        filter {
+            it.replace('#project.version#', version)
+        }
+    }
+}
+

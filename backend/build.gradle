@@ -1,0 +1,248 @@
+import org.gradle.internal.os.OperatingSystem
+
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+        maven { url "http://repo.spring.io/plugins-release" }
+        maven { url "http://repo.spring.io/milestone" }
+        maven { url "https://plugins.gradle.org/m2/" }
+
+    }
+    dependencies {
+        // spring
+        classpath('org.springframework.boot:spring-boot-gradle-plugin:1.5.4.RELEASE')
+        classpath('io.spring.gradle:dependency-management-plugin:0.5.6.RELEASE')
+        classpath "org.springframework.build.gradle:propdeps-plugin:0.0.7"
+        classpath('org.springframework:springloaded:1.2.6.RELEASE')
+        classpath "org.springframework.build.gradle:propdeps-plugin:0.0.7"
+        classpath('net.ltgt.gradle:gradle-apt-plugin:0.9')
+        classpath "com.moowork.gradle:gradle-node-plugin:1.2.0"
+        classpath "io.spring.gradle:dependency-management-plugin:0.6.1.RELEASE"
+
+    }
+}
+
+apply plugin: 'java'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+apply plugin: 'maven'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'war'
+apply plugin: 'propdeps'
+apply plugin: 'com.moowork.node'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'idea'
+defaultTasks 'bootRun'
+
+
+bootRepackage {
+    mainClass = 'com.campusfrance.op.OPApplication'
+}
+
+war {
+
+}
+
+springBoot {
+    mainClass = 'com.campusfrance.toucan.ToucanApp'
+    executable = true
+    buildInfo()
+}
+
+
+if (OperatingSystem.current().isWindows()) {
+    task pathingJar(type: Jar) {
+        dependsOn configurations.runtime
+        appendix = 'pathing'
+
+        doFirst {
+            manifest {
+                attributes 'Class-Path': configurations.runtime.files.collect {
+                    it.toURL().toString().replaceFirst(/file:\/+/, '/').replaceAll(' ', '%20')
+                }.join(' ')
+            }
+        }
+    }
+
+    bootRun {
+        addResources = false
+        dependsOn pathingJar
+        doFirst {
+            classpath = files("$buildDir/classes/java/main", "$buildDir/resources/main", pathingJar.archivePath)
+        }
+    }
+} else {
+    bootRun {
+        addResources = false
+    }
+}
+
+
+
+
+
+group = 'com.campusfrance.op'
+version = '0.0.1-SNAPSHOT'
+
+description = ''
+
+configurations {
+    providedRuntime
+    //compile.exclude module: "spring-boot-starter-tomcat"
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    jcenter()
+    maven { url 'http://repo.spring.io/milestone' }
+    maven { url 'http://repo.spring.io/snapshot' }
+    maven { url 'https://repository.jboss.org/nexus/content/repositories/releases' }
+    maven { url 'https://oss.sonatype.org/content/repositories/releases' }
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    maven { url 'http://repo.maven.apache.org/maven2' }
+}
+
+dependencies {
+
+    //jee
+    compile('javax.inject:javax.inject:1')
+    compile('javax.transaction:javax.transaction-api')
+    //commons
+    compile('commons-codec:commons-codec:1.10')
+    // spring
+    compile('org.springframework.boot:spring-boot-actuator')
+    compile("org.springframework.boot:spring-boot-starter-web") {
+        //exclude module: 'spring-boot-starter-tomcat'
+    }
+    //compile "org.springframework.boot:spring-boot-starter-undertow"
+    compile('org.springframework.boot:spring-boot-starter-aop')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.springframework.boot:spring-boot-starter-security')
+    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+    compile('org.springframework:spring-context-support') {
+        exclude(module: 'quartz')
+    }
+    // https://mvnrepository.com/artifact/io.swagger/swagger-annotations
+    compile group: 'io.swagger', name: 'swagger-annotations', version: '1.5.0'
+
+    //spring security
+
+    compile('org.springframework.security:spring-security-config')
+    compile('org.springframework.security:spring-security-data')
+    compile('org.springframework.security:spring-security-web')
+    compile('org.springframework.security:spring-security-cas')
+    compile('io.jsonwebtoken:jjwt:0.6.0')
+
+    //hibernate
+    compile "javax.cache:cache-api:${jcache_version}"
+    compile "org.hibernate:hibernate-core:${hibernate_version}"
+    compile("com.zaxxer:HikariCP") {
+        exclude(module: 'tools')
+    }
+
+
+    compile "org.apache.commons:commons-lang3:${commons_lang_version}"
+    compile "commons-io:commons-io:${commons_io_version}"
+    compile "org.apache.geronimo.javamail:geronimo-javamail_1.4_mail:${geronimo_javamail_1_4_mail_version}"
+    compile "javax.transaction:javax.transaction-api"
+    compile "org.ehcache:ehcache"
+    compile "org.hibernate:hibernate-jcache:${hibernate_version}"
+    compile "org.hibernate:hibernate-envers"
+    compile "org.hibernate:hibernate-validator:${hibernate_validator_version}"
+    compile "org.hibernate:hibernate-entitymanager:${hibernate_version}"
+
+    //db
+    compile('mysql:mysql-connector-java')
+    compile('com.h2database:h2')
+
+    // google gson
+    compile('com.google.code.gson:gson:2.7')
+
+    //metric
+    compile "io.dropwizard.metrics:metrics-core"
+    compile "io.dropwizard.metrics:metrics-healthchecks:${dropwizard_metrics_version}"
+    compile "io.dropwizard.metrics:metrics-jvm:${dropwizard_metrics_version}"
+    compile "io.dropwizard.metrics:metrics-servlet:${dropwizard_metrics_version}"
+    compile "io.dropwizard.metrics:metrics-json:${dropwizard_metrics_version}"
+    compile("io.dropwizard.metrics:metrics-servlets:${dropwizard_metrics_version}") {
+        exclude(module: 'metrics-healthchecks')
+    }
+
+    //jackson
+    compile "com.fasterxml.jackson.datatype:jackson-datatype-json-org:${jackson_version}"
+    compile "com.fasterxml.jackson.datatype:jackson-datatype-hppc:${jackson_version}"
+    compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jackson_version}"
+    compile "com.fasterxml.jackson.datatype:jackson-datatype-hibernate5"
+    compile "com.fasterxml.jackson.core:jackson-annotations:${jackson_version}"
+    compile "com.fasterxml.jackson.core:jackson-databind:${jackson_version}"
+    compile("com.ryantenney.metrics:metrics-spring:${metrics_spring_version}") {
+        exclude(module: 'metrics-core')
+        exclude(module: 'metrics-healthchecks')
+    }
+    // https://mvnrepository.com/artifact/oro/oro
+    compile group: 'oro', name: 'oro', version: '2.0.8'
+    // https://mvnrepository.com/artifact/org.ghost4j/ghost4j
+    compile group: 'org.ghost4j', name: 'ghost4j', version: '1.0.0'
+    // https://mvnrepository.com/artifact/org.apache.pdfbox/pdfbox
+    compile group: 'org.apache.pdfbox', name: 'pdfbox', version: '2.0.0'
+    // https://mvnrepository.com/artifact/com.itextpdf/itextpdf
+    compile group: 'com.itextpdf', name: 'itextpdf', version: '5.0.6'
+
+    //flyway
+    compile('org.flywaydb:flyway-core:5.2.1')
+
+    //thumbnai
+    compile group: 'net.coobird', name: 'thumbnailator', version: '0.4.1'
+
+    //mapstruct
+    compile "org.mapstruct:mapstruct-jdk8:${mapstruct_version}"
+
+    //univocity
+    compile('com.univocity:univocity-parsers:2.2.2')
+
+    //cas
+    compile('org.jasig.cas.client:cas-client-core:3.4.1')
+
+    // https://mvnrepository.com/artifact/commons-collections/commons-collections
+    compile group: 'commons-collections', name: 'commons-collections', version: '3.0'
+
+    // testing
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+
+    //Configuration metadata generation - for a nice IDE intellisence support
+    optional "org.springframework.boot:spring-boot-configuration-processor:1.4.1.RELEASE"
+
+    // https://mvnrepository.com/artifact/commons-codec/commons-codec
+    compile group: 'commons-codec', name: 'commons-codec', version: '1.5'
+
+    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+}
+
+
+
+task cleanResources(type: Delete) {
+    delete 'build/resources'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.3'
+}
+
+task stage(dependsOn: 'bootRepackage') {
+}
+
+if (project.hasProperty('nodeInstall')) {
+    node {
+        version = "${node_version}"
+        npmVersion = "${npm_version}"
+        yarnVersion = "${yarn_version}"
+        download = true
+    }
+}
+
+compileJava.dependsOn processResources
+processResources.dependsOn cleanResources, bootBuildInfo
+bootBuildInfo.mustRunAfter cleanResources

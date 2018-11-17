@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.hibernate:hibernate-jcache:5.2.8.Final">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-jcache/5.2.8.Final/e9d5721c9a1ebc6ec63df0a7cfc73e8686454be7/hibernate-jcache-5.2.8.Final.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-jcache/5.2.8.Final/46b99b02b35e43f8c9fc2831ee752da6797564f2/hibernate-jcache-5.2.8.Final-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
