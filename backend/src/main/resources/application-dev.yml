@@ -20,7 +20,7 @@ spring:
         serialization.indent_output: true
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:mysql://localhost:3306/spring_boot_db?useSSL=false?useUnicode=true&characterEncoding=utf8&useSSL=false
+        url: jdbc:mysql://localhost:3306/ranilas?useSSL=false?useUnicode=true&characterEncoding=utf8&useSSL=false
         name:
         username: root
         password:
@@ -41,87 +41,11 @@ spring:
             hibernate.generate_statistics: false
             hibernate.javax.cache.provider: org.ehcache.jsr107.EhcacheCachingProvider
             hibernate.javax.cache.uri: ${spring.cache.jcache.config}
+#        hibernate:
+#          ddl-auto: create
            # hibernate.cache.region.factory_class: com.campusfrance.op.config.jcache.SpringCacheRegionFactory
-    cache:
-        jcache:
-            config: ehcache.xml
-    mail:
-        host: smtp.axones.fr
-        port: 25
-        username: msmaoui@axones.com
-        password:
-    messages:
-        cache-seconds: 1
-    thymeleaf:
-        cache: false
-liquibase:
-    contexts: dev
-
 server:
     port: 8081
     compression:
       enabled: true
       mime-types: application/json
-
-# ===================================================================
-# OPApp specific properties
-# ===================================================================
-
-opapp:
-    cache: # Hibernate 2nd level cache, used by CacheConfiguration
-        timeToLiveSeconds: 3600
-        ehcache:
-            maxBytesLocalHeap: 16M
-    security:
-        authentication:
-            jwt:
-                secret: my-secret-token-to-change-in-production
-                # Token is valid 24 hours
-                tokenValidityInSeconds: 86400
-    mail: # specific OPApp mail property, for standard properties see MailProperties
-        from: no-reply@campusfrance.org
-        baseUrl : https://toucan.campusfrance.org
-    metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
-        jmx.enabled: true
-        spark:
-            enabled: false
-            host: localhost
-            port: 9999
-        graphite:
-            enabled: false
-            host: localhost
-            port: 2003
-            prefix: op
-        logs: # Reports Dropwizard metrics in the logs
-            enabled: false
-            reportFrequency: 60 # in seconds
-    logging:
-        logstash: # Forward logs to logstash over a socket, used by LoggingConfiguration
-            enabled: false
-            host: localhost
-            port: 5000
-            queueSize: 512
-    cas:
-        casUrlLogin: https://rec.cf.com:10081/cas/login
-        casUrlLogout: https://rec.cf.com:10081/cas/logout
-        casUrlPrefix: https://rec.cf.com:10081/cas/
-        casServiceUrl: http://localhost:80/login/cas
-        casServiceHome: http://localhost:80/
-        casGUCHome : http://192.168.54.162:8080/GCUtilisateur/guc/restapi/creationSimplifieeCompte
-
-    upload:
-        uploadBaseDirectory: Z:\\CDS\\CAMPUS FRANCE\\09 - Outil de Placement\\100-upload-dir
-        uploadUserDirectory: \\users
-        programBandeauDirectory: \\bandeau
-        programLogoDirectory: \\logo
-    payment:
-        currency: EUR
-        language: fr_FR
-        pspId: CAMPUSFRANCE02TEST
-        title: Paiement toucan
-        keySign: Campusfr@nceEstNeEn2012!
-        actionUrl: https://secure.ogone.com/ncol/test/orderstandard.asp
-        #TODO: change for prod envirennment: actionUrl: https://secure.ogone.com/ncol/prod/orderstandard.asp
-        homeUrl: http://localhost:80/
-        acceptUrl: http://localhost:80/
-        errorUrl: http://localhost:80/

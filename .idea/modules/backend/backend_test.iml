@@ -7,17 +7,13 @@
     <facet type="web" name="Web">
       <configuration>
         <webroots />
-        <sourceRoots />
       </configuration>
     </facet>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
     <output-test url="file://$MODULE_DIR$/../../../backend/out/test/classes" />
     <exclude-output />
-    <content url="file://$MODULE_DIR$/../../../backend/src/test">
-      <sourceFolder url="file://$MODULE_DIR$/../../../backend/src/test/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/../../../backend/src/test/resources" type="java-test-resource" />
-    </content>
+    <content url="file://$MODULE_DIR$/../../../backend/src/test" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="backend_main" />
@@ -33,11 +29,6 @@
     <orderEntry type="library" name="Gradle: com.ryantenney.metrics:metrics-spring:3.1.2" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-context-support:4.3.9.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: io.swagger:swagger-annotations:1.5.0" level="project" />
-    <orderEntry type="library" name="Gradle: org.springframework.security:spring-security-config:4.2.3.RELEASE" level="project" />
-    <orderEntry type="library" name="Gradle: org.springframework.security:spring-security-data:4.2.3.RELEASE" level="project" />
-    <orderEntry type="library" name="Gradle: org.springframework.security:spring-security-cas:4.2.3.RELEASE" level="project" />
-    <orderEntry type="library" name="Gradle: org.springframework.security:spring-security-web:4.2.3.RELEASE" level="project" />
-    <orderEntry type="library" name="Gradle: io.jsonwebtoken:jjwt:0.6.0" level="project" />
     <orderEntry type="library" name="Gradle: org.hibernate:hibernate-jcache:5.2.8.Final" level="project" />
     <orderEntry type="library" name="Gradle: javax.cache:cache-api:1.0.0" level="project" />
     <orderEntry type="library" name="Gradle: org.hibernate:hibernate-envers:5.0.12.Final" level="project" />
@@ -86,25 +77,26 @@
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-test:1.5.4.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot:1.5.4.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-webmvc:4.3.9.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework.security:spring-security-web:4.2.3.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-web:4.3.9.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.data:spring-data-jpa:1.11.4.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework.security:spring-security-config:4.2.3.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.security:spring-security-core:4.2.3.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-context:4.3.9.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-aop:4.3.9.RELEASE" level="project" />
-    <orderEntry type="library" name="Gradle: org.springframework.data:spring-data-commons:1.13.4.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-orm:4.3.9.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-jdbc:4.3.9.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework.data:spring-data-commons:1.13.4.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-tx:4.3.9.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-beans:4.3.9.RELEASE" level="project" />
-    <orderEntry type="library" name="Gradle: org.springframework:spring-expression:4.3.9.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-test:4.3.9.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework:spring-expression:4.3.9.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-core:4.3.9.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-tomcat:1.5.4.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-aspects:4.3.9.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.aspectj:aspectjweaver:1.8.10" level="project" />
     <orderEntry type="library" name="Gradle: org.thymeleaf:thymeleaf-spring4:2.1.5.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:1.4.0" level="project" />
-    <orderEntry type="library" name="Gradle: aopalliance:aopalliance:1.0" level="project" />
     <orderEntry type="library" name="Gradle: org.hibernate.common:hibernate-commons-annotations:5.0.1.Final" level="project" />
     <orderEntry type="library" name="Gradle: org.jboss.logging:jboss-logging:3.3.1.Final" level="project" />
     <orderEntry type="library" name="Gradle: org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final" level="project" />
