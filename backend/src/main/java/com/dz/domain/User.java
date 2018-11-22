@@ -1,8 +1,8 @@
 package com.dz.domain;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "T_User")
@@ -18,7 +18,7 @@ public class User {
     @Column(name = "first_name_user")
     private String firstName;
 
-    @Column
+    @Column(unique = true)
     private String login;
 
     @Column
@@ -30,7 +30,7 @@ public class User {
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "authorities_id", referencedColumnName = "id")}
     )
-    private Set<Authorities> authorities = new HashSet();
+    private List<Authorities> authorities = new ArrayList<>();
 
     public User() {
     }
@@ -82,11 +82,11 @@ public class User {
         this.password = password;
     }
 
-    public Set<Authorities> getAuthorities() {
+    public List<Authorities> getAuthorities() {
         return authorities;
     }
 
-    public void setAuthorities(Set<Authorities> authorities) {
+    public void setAuthorities(List<Authorities> authorities) {
         this.authorities = authorities;
     }
 

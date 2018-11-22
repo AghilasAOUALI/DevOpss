@@ -13,4 +13,7 @@ public interface UserService {
 
     List<User> getAllUsers();
 
+    User findOne(String login);
+
+
 }

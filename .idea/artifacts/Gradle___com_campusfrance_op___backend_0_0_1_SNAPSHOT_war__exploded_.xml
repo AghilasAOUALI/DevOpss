@@ -25,6 +25,7 @@
           <element id="library" level="project" name="Gradle: org.springframework.boot:spring-boot-starter-thymeleaf:1.5.4.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework.boot:spring-boot-starter-web:1.5.4.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework.boot:spring-boot-starter-aop:1.5.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework.boot:spring-boot-starter-security:1.5.4.RELEASE" />
           <element id="library" level="project" name="Gradle: com.ryantenney.metrics:metrics-spring:3.1.2" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-context-support:4.3.9.RELEASE" />
           <element id="library" level="project" name="Gradle: io.swagger:swagger-annotations:1.5.0" />
@@ -72,8 +73,11 @@
           <element id="library" level="project" name="Gradle: org.springframework.boot:spring-boot-autoconfigure:1.5.4.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework.boot:spring-boot:1.5.4.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-webmvc:4.3.9.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-web:4.2.3.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-web:4.3.9.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework.data:spring-data-jpa:1.11.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-config:4.2.3.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-core:4.2.3.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-context:4.3.9.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-aop:4.3.9.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-orm:4.3.9.RELEASE" />
@@ -130,10 +134,7 @@
           <element id="library" level="project" name="Gradle: ognl:ognl:3.0.8" />
           <element id="library" level="project" name="Gradle: org.unbescape:unbescape:1.1.0.RELEASE" />
           <element id="library" level="project" name="Gradle: ch.qos.logback:logback-core:1.1.11" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-security/1.5.4.RELEASE/4b01cda5a55ce8554dfbccd95d8a2a4d64929788/spring-boot-starter-security-1.5.4.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-web/4.2.3.RELEASE/7a03e737484ca232d7146852f06d067ac21427ac/spring-security-web-4.2.3.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-config/4.2.3.RELEASE/9f3771903616e33521836fd999d63efbfebf90d/spring-security-config-4.2.3.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-core/4.2.3.RELEASE/5c0e47a47036c94d6fdd02696bf52be6d1adbd4d/spring-security-core-4.2.3.RELEASE.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.jsonwebtoken/jjwt/0.6.0/3c8a7897b9ca31c83d3dd364be7f75ce5cd417d7/jjwt-0.6.0.jar" />
         </element>
       </element>
     </root>

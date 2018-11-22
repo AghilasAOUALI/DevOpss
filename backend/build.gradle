@@ -133,8 +133,8 @@ dependencies {
     /*compile('org.springframework.security:spring-security-config')
     compile('org.springframework.security:spring-security-data')
     compile('org.springframework.security:spring-security-web')
-    compile('org.springframework.security:spring-security-cas')
-    compile('io.jsonwebtoken:jjwt:0.6.0')*/
+    compile('org.springframework.security:spring-security-cas')*/
+    compile('io.jsonwebtoken:jjwt:0.6.0')
 
     //hibernate
     compile "javax.cache:cache-api:${jcache_version}"
