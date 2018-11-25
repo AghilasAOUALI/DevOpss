@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, forwardRef, Inject, OnInit} from '@angular/core';
+import {AppComponent} from "../app.component";
 
 @Component({
   selector: 'app-user',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserComponent implements OnInit {
 
-  constructor() { }
+  constructor(@Inject(forwardRef(() => AppComponent)) public app:AppComponent) {
+  }
 
   ngOnInit() {
+    this.app.value=true;
   }
 
 }

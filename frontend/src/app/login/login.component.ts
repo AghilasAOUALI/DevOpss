@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, forwardRef, Inject, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
+import {LoginService} from "./login.service";
+import {Credentials} from "../domain/credentials";
+import {AppComponent} from "../app.component";
+import {User} from "../domain/user";
 
 @Component({
   selector: 'app-login',
@@ -9,21 +13,23 @@ import {Router} from "@angular/router";
 export class LoginComponent implements OnInit {
 
 
-  username : string = '';
-  password : string = '';
+  credential = new Credentials();
 
 
   ngOnInit() {
   }
 
-  constructor(private router : Router) {
+  constructor(private router: Router, private _loginService: LoginService,
+              @Inject(forwardRef(() => AppComponent)) public app: AppComponent) {
   }
 
-  login() : void {
-    if(this.username == 'admin' && this.password == 'admin'){
-      this.router.navigate(['user']);
-    }else {
-      alert("Invalid credentials");
-    }
+  login(): void {
+    this._loginService.login(this.credential).subscribe(data => {
+        this._loginService.saveToken(data.token);
+        this.router.navigate(['user']);
+      },
+      er => {
+        alert("Invalid credentials");
+      });
   }
 }
